@@ -34,16 +34,17 @@ const styles = StyleSheet.create({
         marginVertical: 8
     },
     label: {
-        fontSize: 12,
-        color: Colors.accent200,
-        marginBottom: 4
+        fontSize: 16,
+        color: Colors.fontSecondary,
+        marginBottom: 4,
     },
     input: {
         backgroundColor: Colors.accent200,
         padding: 6,
         borderRadius: 6,
         fontSize: 18,
-        color: Colors.primary700
+        color: Colors.fontPrimary,
+        width:"100%"
     },
     inputMultiline: {
         minHeight: 100,

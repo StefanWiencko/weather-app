@@ -13,7 +13,7 @@ const Button = ({ children, onPress, mode, style }: Props) => {
 
     return (
         <View style={[styles.rootContainer, style]}>
-            <Pressable android_ripple={{ color: Colors.accent200, }} onPress={onPress} style={[styles.button, mode === "flat" && styles.flat]}>
+            <Pressable android_ripple={{ color: Colors.accent200 }} onPress={onPress} style={[styles.button, mode === "flat" && styles.flat]}>
                 <Text style={[styles.buttonText, mode === "flat" && styles.flatText]}>{children}</Text>
             </Pressable>
         </View >

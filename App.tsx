@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
@@ -9,9 +10,13 @@ import Home from '@/screens/Home';
 import Favorites from '@/screens/FavoriteLocations';
 import WeatherDetails from '@/screens/WeatherDetails';
 import { Colors } from '@/constants/colors';
+import FavoriteLocationsProvider from '@/store/favorite-locations-context';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 const BottomTabs = createBottomTabNavigator<BottomTabsParamList>()
+
+const queryClient = new QueryClient()
 
 const BottomTabsNavigation = () => {
   return <BottomTabs.Navigator
@@ -29,7 +34,7 @@ const BottomTabsNavigation = () => {
       name='Home'
       component={Home}
       options={{
-        tabBarIcon: ({ color, size }) => <Ionicons name='list' color={color} size={size} />
+        tabBarIcon: ({ color, size }) => <Ionicons name='home' color={color} size={size} />
 
       }} />
     <BottomTabs.Screen
@@ -44,24 +49,29 @@ const BottomTabsNavigation = () => {
 export default function App() {
   return (<>
     <StatusBar style='light' />
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary700 },
-        headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.primary500 }
-      }}>
-        <Stack.Screen
-          name='BottomTabsScreen'
-          component={BottomTabsNavigation}
-          options={{
-            headerShown: false,
-          }} />
-        <Stack.Screen
-          name='WeatherDetails'
-          component={WeatherDetails}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <FavoriteLocationsProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: Colors.primary700 },
+            headerTintColor: "#fff",
+            contentStyle: { backgroundColor: Colors.primary500 },
+            presentation: 'card'
+          }}>
+            <Stack.Screen
+              name='BottomTabsScreen'
+              component={BottomTabsNavigation}
+              options={{
+                headerShown: false,
+              }} />
+            <Stack.Screen
+              name='WeatherDetails'
+              component={WeatherDetails}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoriteLocationsProvider>
+    </QueryClientProvider>
   </>
   );
 }
