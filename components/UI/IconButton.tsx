@@ -4,15 +4,14 @@ import { Ionicons } from "@expo/vector-icons"
 
 type Props = {
     icon: keyof typeof Ionicons.glyphMap
-    size: number
     color: string
     onPress: () => void
 }
 
-const IconButton = ({ icon, color, onPress, size }: Props) => {
+const IconButton = ({ icon, color, onPress }: Props) => {
     return (<Pressable onPress={onPress} style={({ pressed }) => pressed && styles.pressed}>
         <View>
-            <Ionicons name={icon} size={size} color={color} />
+            <Ionicons name={icon} size={24} color={color} />
         </View>
     </Pressable >
     )

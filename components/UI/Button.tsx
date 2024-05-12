@@ -3,7 +3,7 @@ import React from 'react'
 import { Colors } from "@/constants/colors"
 type Props = {
     children: React.ReactNode
-    onPress: () => void
+    onPress: (...args: any[]) => void
     mode?: "flat",
     style?: Record<string, number | string>
 }
@@ -14,9 +14,7 @@ const Button = ({ children, onPress, mode, style }: Props) => {
     return (
         <View style={[styles.rootContainer, style]}>
             <Pressable android_ripple={{ color: Colors.accent200, }} onPress={onPress} style={[styles.button, mode === "flat" && styles.flat]}>
-                {/* <View > */}
                 <Text style={[styles.buttonText, mode === "flat" && styles.flatText]}>{children}</Text>
-                {/* </View> */}
             </Pressable>
         </View >
     )
