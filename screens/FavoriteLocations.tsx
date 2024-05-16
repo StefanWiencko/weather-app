@@ -2,9 +2,9 @@ import { FlatList, StyleSheet, View, Text } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/colors";
 import { FavoritesScreenProps } from "@/types";
-import Button from "@/components/UI/Button";
 import { Location } from "@/types";
 import { useFavoriteLocation } from "@/store/favorite-locations-context";
+import ListItem from "@/components/UI/ListItem";
 
 const Favorites = ({ navigation }: FavoritesScreenProps) => {
   const { favoriteLocations } = useFavoriteLocation();
@@ -19,14 +19,10 @@ const Favorites = ({ navigation }: FavoritesScreenProps) => {
           data={favoriteLocations}
           keyExtractor={(item) => item.id.toString()}
           renderItem={(itemData) => (
-            <View style={styles.listItem}>
-              <Button
-                style={styles.listItemButton}
-                onPress={() => handleItemPress(itemData.item)}
-              >
-                {itemData.item.location}
-              </Button>
-            </View>
+            <ListItem
+              onPress={() => handleItemPress(itemData.item)}
+              text={itemData.item.location}
+            />
           )}
         />
       ) : (
@@ -43,7 +39,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary500,
     width: "100%",
-    alignItems: "center",
   },
   list: {
     maxWidth: "80%",
@@ -53,15 +48,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: "auto",
   },
-  listItem: {
-    marginVertical: 4,
-  },
-  listItemButton: {
-    backgroundColor: "transparent",
-  },
   label: {
     fontSize: 16,
-    color: Colors.fontPrimary,
+    color: Colors.font,
     marginTop: 36,
+    textAlign: "center",
   },
 });

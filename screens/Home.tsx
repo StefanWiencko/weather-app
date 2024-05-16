@@ -1,4 +1,4 @@
-import { StyleSheet, View, useWindowDimensions } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { Colors } from "@/constants/colors";
 import Input from "@/components/UI/Input";
@@ -11,6 +11,7 @@ const Home = ({ navigation }: HomeScreenProps) => {
   const buttonPressHandler = () => {
     if (inputValue.length === 0) return;
     navigation.navigate("WeatherDetails", { location: inputValue });
+    setInputValue("");
   };
   const inputTextChangeHandler = (value: string) => {
     setInputValue(value);

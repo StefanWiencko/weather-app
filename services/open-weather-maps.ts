@@ -1,5 +1,6 @@
 import { OpenWeatherMapsApiResponse, OpenWeatherMapsError } from "@/types";
 import _ from "lodash";
+
 export const getOpenWeatherMapWeatherData = async (
   city: string
 ): Promise<OpenWeatherMapsApiResponse> => {
